@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 
 pygame.init()
 
@@ -32,8 +33,10 @@ steel_white = (232, 237, 242)
 steel_grey = (170, 184, 200)
 
 # load background image
+# used Path to load the image in all os
+image_path = Path(__file__).parent / "images" / "background.png"
 background = pygame.image.load(
-    "images/background.png"
+    image_path
 ).convert()
 
 #define menu buttons
