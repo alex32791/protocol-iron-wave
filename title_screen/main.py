@@ -1,35 +1,14 @@
 import pygame
-from pathlib import Path
+from constants import *
 from game import Game
 
-# constatns 
-TITLE_STATE = "title"
-GAME_STATE = "game"
-
-# define colors
-WHITE = (255, 255, 255)
-CYAN = (0, 220, 255)
-DARK_BLUE = (10, 25, 45)
-RED =(255,40,40)
-GOLD = (255, 215, 0)
-STEEL_WHITE = (232, 237, 242)
-STEEL_GREY = (170, 184, 200)
-
-#define menu buttons
-BUTTON_LABELS = ["START", "CREDITS", "OPTIONS", "EXIT"]
-BUTTON_WIDTH = 300
-BUTTON_HEIGHT = 60
-BUTTON_SPACING = 20
 
 # a function for the title screen
-def draw_title_screen(screen, background, button_rects):
+def draw_title_screen(screen, background, button_rects, width, height):
 
     # load fonts
     title_font = pygame.font.SysFont("arial", 48, bold=True)
     button_font = pygame.font.SysFont("arial", 32, bold=True)
-
-    # get current window dimensions
-    width, height = screen.get_size()
 
     # resize background image
     scaled_background = pygame.transform.scale(
@@ -137,7 +116,7 @@ def main():
     screen_width = display_info.current_w
     screen_height = display_info.current_h
 
-    # set windo dimension with some space around it
+    # set window dimension with some space around it
     width = int(screen_width * 0.9)
     height = int(screen_height * 0.8)
 
@@ -150,7 +129,7 @@ def main():
 
     # load background image
     # used Path to load the image in all os
-    image_path = Path(__file__).parent / "images" / "background.png"
+    image_path = TITLE_BACKGROUND
     background = pygame.image.load(
         image_path
     ).convert()
@@ -165,6 +144,9 @@ def main():
     state = TITLE_STATE
 
     while running:
+
+        # get current window dimensions
+        screen_width, screen_height = screen.get_size()
 
         # handle game events
         for event in pygame.event.get():
@@ -183,13 +165,16 @@ def main():
                                 running = False
 
                             elif label == "START":
-                                game = Game(screen)
+                                # initialize game class
+                                game = Game(screen, screen_width, screen_height)
                                 state = GAME_STATE
 
         if state == TITLE_STATE:
-            draw_title_screen(screen, background, button_rects)
+            # creates the title screen
+            draw_title_screen(screen, background, button_rects, screen_width, screen_height)
 
         elif state == GAME_STATE:
+            # creates the game screen
             game.draw() 
 
         # update display
