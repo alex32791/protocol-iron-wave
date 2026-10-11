@@ -1,73 +1,32 @@
 import pygame
 from pathlib import Path
+from game import Game
 
-pygame.init()
-
-# get screen dimensions
-display_info = pygame.display.Info()
-screen_width = display_info.current_w
-screen_height = display_info.current_h
-
-# set windo dimension with some space around it
-width = int(screen_width * 0.9)
-height = int(screen_height * 0.8)
-
-# create resizable game window
-screen = pygame.display.set_mode(
-    (width, height),
-    pygame.RESIZABLE  
-)
-pygame.display.set_caption("Protocol: Iron Wave")
-
-# load fonts
-title_font = pygame.font.SysFont("arial", 48, bold=True)
-button_font = pygame.font.SysFont("arial", 32, bold=True)
+# constatns 
+TITLE_STATE = "title"
+GAME_STATE = "game"
 
 # define colors
-white = (255, 255, 255)
-cyan = (0, 220, 255)
-dark_blue = (10, 25, 45)
-red =(255,40,40)
-gold = (255, 215, 0)
-steel_white = (232, 237, 242)
-steel_grey = (170, 184, 200)
-
-# load background image
-# used Path to load the image in all os
-image_path = Path(__file__).parent / "images" / "background.png"
-background = pygame.image.load(
-    image_path
-).convert()
+WHITE = (255, 255, 255)
+CYAN = (0, 220, 255)
+DARK_BLUE = (10, 25, 45)
+RED =(255,40,40)
+GOLD = (255, 215, 0)
+STEEL_WHITE = (232, 237, 242)
+STEEL_GREY = (170, 184, 200)
 
 #define menu buttons
-button_labels = ["START", "CREDITS", "OPTIONS", "EXIT"]
-button_width = 300
-button_height = 60
-button_spacing = 20
+BUTTON_LABELS = ["START", "CREDITS", "OPTIONS", "EXIT"]
+BUTTON_WIDTH = 300
+BUTTON_HEIGHT = 60
+BUTTON_SPACING = 20
 
-# store button rectangles
-button_rects = {}
+# a function for the title screen
+def draw_title_screen(screen, background, button_rects):
 
-# start main game loop
-running = True
-
-while running:
-
-    # handle game events
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-        #check mouse clicks
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
-
-                #check which button was clicked
-                for label, rect in button_rects.items():
-                    if rect.collidepoint(event.pos):
-
-                        if label == "EXIT":
-                            running = False
+    # load fonts
+    title_font = pygame.font.SysFont("arial", 48, bold=True)
+    button_font = pygame.font.SysFont("arial", 32, bold=True)
 
     # get current window dimensions
     width, height = screen.get_size()
@@ -84,7 +43,7 @@ while running:
     title = title_font.render(
         "PROTOCOL: IRON WAVE",
         True,
-        steel_grey
+        STEEL_GREY
     )
 
     # center title horizontally
@@ -95,25 +54,25 @@ while running:
 
     # calculate height of all buttons
     total_height = (
-        len(button_labels) *button_height+ (len(button_labels) - 1) * button_spacing
+        len(BUTTON_LABELS) * BUTTON_HEIGHT + (len(BUTTON_LABELS) - 1) * BUTTON_SPACING
     )
 
     #draw menu buttons
-    for index, label in enumerate(button_labels):
+    for index, label in enumerate(BUTTON_LABELS):
 
         #calculate button position
-        button_x = (width - button_width) // 2
+        button_x = (width - BUTTON_WIDTH) // 2
 
         button_y = (height - total_height) // 2 + index * (
-            button_height + button_spacing 
+            BUTTON_HEIGHT + BUTTON_SPACING 
         )
 
         #create button rectangle
         button_rect = pygame.Rect(
             button_x,
             button_y,
-            button_width,
-            button_height
+            BUTTON_WIDTH,
+            BUTTON_HEIGHT
         )
 
         #store button rectangle
@@ -125,11 +84,11 @@ while running:
 
         #choose button colors
         if mouse_over:
-            button_color = cyan
-            text_color = dark_blue
+            button_color = CYAN
+            text_color = DARK_BLUE
         else:
-            button_color = dark_blue
-            text_color = white
+            button_color = DARK_BLUE
+            text_color = WHITE
 
         #draw button background
         pygame.draw.rect(
@@ -142,11 +101,11 @@ while running:
         #draw button border
         pygame.draw.rect(
             screen,
-            cyan,
+            CYAN,
             button_rect,
             width=3,
             border_radius= 12
-         )
+            )
 
         #draw button text
         button_text = button_font.render(
@@ -169,10 +128,77 @@ while running:
         #draw text on screen
         screen.blit(button_text, (text_x, text_y))
 
-    # update display
-    pygame.display.flip()
+def main():
 
-# shut down pygame
-pygame.quit()
+    pygame.init()
 
+    # get screen dimensions
+    display_info = pygame.display.Info()
+    screen_width = display_info.current_w
+    screen_height = display_info.current_h
+
+    # set windo dimension with some space around it
+    width = int(screen_width * 0.9)
+    height = int(screen_height * 0.8)
+
+    # create resizable game window
+    screen = pygame.display.set_mode(
+        (width, height),
+        pygame.RESIZABLE  
+    )
+    pygame.display.set_caption("Protocol: Iron Wave")
+
+    # load background image
+    # used Path to load the image in all os
+    image_path = Path(__file__).parent / "images" / "background.png"
+    background = pygame.image.load(
+        image_path
+    ).convert()
+
+    # store button rectangles
+    button_rects = {}
+
+    # start main game loop
+    running = True
+
+    # first state
+    state = TITLE_STATE
+
+    while running:
+
+        # handle game events
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+            #check mouse clicks
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+
+                    #check which button was clicked
+                    for label, rect in button_rects.items():
+                        if rect.collidepoint(event.pos):
+
+                            if label == "EXIT":
+                                running = False
+
+                            elif label == "START":
+                                game = Game(screen)
+                                state = GAME_STATE
+
+        if state == TITLE_STATE:
+            draw_title_screen(screen, background, button_rects)
+
+        elif state == GAME_STATE:
+            game.draw() 
+
+        # update display
+        pygame.display.flip()
+
+    # shut down pygame
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
 
