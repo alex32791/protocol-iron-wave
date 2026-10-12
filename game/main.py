@@ -22,7 +22,7 @@ def draw_title_screen(screen, background, button_rects, width, height):
     title = title_font.render(
         "PROTOCOL: IRON WAVE",
         True,
-        STEEL_GREY
+        COLORS["STEEL_GREY"]
     )
 
     # center title horizontally
@@ -63,11 +63,11 @@ def draw_title_screen(screen, background, button_rects, width, height):
 
         #choose button colors
         if mouse_over:
-            button_color = CYAN
-            text_color = DARK_BLUE
+            button_color = COLORS["CYAN"]
+            text_color = COLORS["DARK_BLUE"]
         else:
-            button_color = DARK_BLUE
-            text_color = WHITE
+            button_color = COLORS["DARK_BLUE"]
+            text_color = COLORS["WHITE"]
 
         #draw button background
         pygame.draw.rect(
@@ -80,7 +80,7 @@ def draw_title_screen(screen, background, button_rects, width, height):
         #draw button border
         pygame.draw.rect(
             screen,
-            CYAN,
+            COLORS["CYAN"],
             button_rect,
             width=3,
             border_radius= 12

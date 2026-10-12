@@ -2,10 +2,29 @@
 # a file for all units
 
 import pygame
+from constants import COLORS
 
 class Unit:
-  def __init__(self, width, heigth, health, speed, attack):
-     pass
+   def __init__(self, x, y, health, speed, attack, color):
+      self.rect = pygame.Rect(x, y, 40, 40)
+      self.x = x
+      self.y = y
+      self.health = health
+      self.speed = speed
+      self.attack = attack
+      self.color = color
+
+   def draw(self, screen):
+      pygame.draw.rect(screen, self.color, self.rect)
+
 
 class Soldier(Unit):
-   pass
+    def __init__(self, x, y, health, speed, attack):
+       super().__init__(
+          x, 
+          y, 
+          health = 100,
+          speed = 2,
+          attack = 10,
+          color = COLORS["DARK_BLUE"]
+          )
