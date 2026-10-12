@@ -1,3 +1,6 @@
+
+# a python file for all constants
+
 from pathlib import Path
 
 # cdefine strings
@@ -8,7 +11,7 @@ GAME_STATE = "game"
 WHITE = (255, 255, 255)
 CYAN = (0, 220, 255)
 DARK_BLUE = (10, 25, 45)
-RED =(255,40,40)
+RED = (255,40,40)
 GOLD = (255, 215, 0)
 STEEL_WHITE = (232, 237, 242)
 STEEL_GREY = (170, 184, 200)
