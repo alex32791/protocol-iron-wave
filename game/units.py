@@ -23,8 +23,19 @@ class Soldier(Unit):
        super().__init__(
           x, 
           y, 
-          health = 100,
-          speed = 2,
-          attack = 10,
+          health = health,
+          speed = speed,
+          attack = attack,
           color = COLORS["DARK_BLUE"]
+          )
+
+class Tank(Unit):
+    def __init__(self, x, y, health, speed, attack):
+       super().__init__(
+          x, 
+          y, 
+          health = 300,
+          speed = 4,
+          attack = 50,
+          color = COLORS["STEEL_GREY"]
           )
