@@ -143,6 +143,9 @@ def main():
     # first state
     state = TITLE_STATE
 
+    # clock for movement
+    clock = pygame.time.Clock()
+
     while running:
 
         # get current window dimensions
@@ -153,32 +156,40 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
 
-            #check mouse clicks
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
+            elif state == GAME_STATE:
+                game.handle_event(event)
 
-                    #check which button was clicked
-                    for label, rect in button_rects.items():
-                        if rect.collidepoint(event.pos):
+            elif state == TITLE_STATE:
+                #check mouse clicks
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
 
-                            if label == "EXIT":
-                                running = False
+                        #check which button was clicked
+                        for label, rect in button_rects.items():
+                            if rect.collidepoint(event.pos):
 
-                            elif label == "START":
-                                # initialize game class
-                                game = Game(screen, screen_width, screen_height)
-                                state = GAME_STATE
+                                if label == "EXIT":
+                                    running = False
+
+                                elif label == "START":
+                                    # initialize game class
+                                    game = Game(screen, screen_width, screen_height)
+                                    state = GAME_STATE
 
         if state == TITLE_STATE:
             # creates the title screen
             draw_title_screen(screen, background, button_rects, screen_width, screen_height)
 
         elif state == GAME_STATE:
-            # creates the game screen
-            game.draw() 
+            # creates and updates the game screen
+            game.update()
+            game.draw_game()
 
         # update display
         pygame.display.flip()
+
+        # 60 FPS
+        clock.tick(60)
 
     # shut down pygame
     pygame.quit()

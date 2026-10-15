@@ -14,23 +14,27 @@ class Unit:
       self.attack = attack
       self.color = color
 
+   # draws the unit
    def draw(self, screen):
       pygame.draw.rect(screen, self.color, self.rect)
 
+   # moves the unit
+   def move(self):
+      self.rect.x += self.speed
 
 class Soldier(Unit):
-    def __init__(self, x, y, health, speed, attack):
+    def __init__(self, x, y):
        super().__init__(
           x, 
           y, 
-          health = health,
-          speed = speed,
-          attack = attack,
+          health=100,
+          speed=2,
+          attack=10,
           color = COLORS["DARK_BLUE"]
           )
 
 class Tank(Unit):
-    def __init__(self, x, y, health, speed, attack):
+    def __init__(self, x, y):
        super().__init__(
           x, 
           y, 

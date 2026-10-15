@@ -28,3 +28,10 @@ BUTTON_SPACING = 20
 # paths to all images for the game
 TITLE_BACKGROUND = Path(__file__).parent / "images" / "background.png"
 HQ_IMAGE = Path(__file__).parent / "images" / "headquarters.png"
+
+# define units name
+SOLDIER = "Soldier" #0
+TANK = "Tank" #1 
+
+# Tuple
+UNITY_TYPES = (SOLDIER, TANK)
