@@ -30,10 +30,46 @@ class Soldier(Unit):
           health=100,
           speed=2,
           attack=10,
-          color = COLORS["DARK_BLUE"]
+          color = COLORS["DARK_BLUE"],
+          prio=None #machen!
           )
 
 class Tank(Unit):
+    def __init__(self, x, y):
+       super().__init__(
+          x, 
+          y, 
+          health = 300,
+          speed = 4,
+          attack = 50,
+          color = COLORS["STEEL_GREY"]
+          )
+
+# Werte
+class Sniper(Unit):
+    def __init__(self, x, y):
+       super().__init__(
+          x, 
+          y, 
+          health = 300,
+          speed = 4,
+          attack = 50,
+          color = COLORS["STEEL_GREY"]
+          )
+
+# Werte
+class GatlingSoldier(Unit):
+    def __init__(self, x, y):
+       super().__init__(
+          x, 
+          y, 
+          health = 300,
+          speed = 4,
+          attack = 50,
+          color = COLORS["STEEL_GREY"]
+          )
+
+class Artillery(Unit):
     def __init__(self, x, y):
        super().__init__(
           x, 
