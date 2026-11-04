@@ -30,8 +30,8 @@ class Soldier(Unit):
           health=100,
           speed=2,
           attack=10,
-          color = COLORS["DARK_BLUE"],
-          prio=None #machen!
+          color = COLORS["DARK_BLUE"]
+          #prio=None #machen!
           )
 
 class Tank(Unit):
