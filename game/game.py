@@ -24,6 +24,11 @@ class Game:
        UNITY_TYPES[0]: pygame.Rect(20, self.screen_height - 10 - 10, 160, 50)
     }
 
+    # grid slots
+    self.slot_size = 64
+    self.grid_cols = 8
+    self.grid_rows = 24
+
     self.units = []
 
   # draws the game
@@ -31,6 +36,7 @@ class Game:
     self.resize_buttons()
 
     self.screen.fill(COLORS["CYAN"])
+    self.draw_gird()
 
     # load headquaters image into game
     hq_map_palcement = self.screen_height / 2 - 150
@@ -82,4 +88,38 @@ class Game:
   def update(self):
     for unit in self.units:
       unit.move()
+
+  # draws grid on screen
+  def draw_gird(self):
+    # place grid
+    width, height = self.screen.get_size()
+    self.slot_size = height / self.grid_rows
+    grid_width = self.grid_cols * self.slot_size
+    grid_heigth = height
+    self.grid_y = 0
+    self.grid_x = (width - grid_width) / 2 - width * 0.15
+
+    for col in range(self.grid_cols + 1):
+      x = self.grid_x + col * self.slot_size
+      line_width = 3 if col % 2 == 0 else 1
+
+      pygame.draw.line(
+        self.screen,
+        COLORS["DARK_BLUE"],
+        (x, self.grid_y),
+        (x, self.grid_y + grid_heigth),
+        line_width
+      )
+
+    for row in range(self.grid_rows + 1):
+      y = self.grid_y + row * self.slot_size
+      line_width = 3 if row % 2 == 0 else 1
+
+      pygame.draw.line(
+        self.screen,
+        COLORS["DARK_BLUE"],
+        (self.grid_x, y),
+        (self.grid_x + grid_width, y),
+        line_width
+      )
 
