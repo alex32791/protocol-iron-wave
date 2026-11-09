@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocol: Iron Wave | Projektstatus</title>
+<style>
+:root{--bg:#07111f;--panel:#10243a;--line:#285064;--cyan:#64d8e8;--text:#edf5fb;--muted:#aec0cf;--green:#8ce0b0;--amber:#f4c77b}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);background:radial-gradient(ellipse at 15% 0%,#16445a 0,transparent 38rem),linear-gradient(145deg,#050b14,var(--bg) 60%,#0b1c2d);font:16px/1.6 "Segoe UI",Arial,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:linear-gradient(#78bed2 1px,transparent 1px),linear-gradient(90deg,#78bed2 1px,transparent 1px);background-size:42px 42px}
+.page{width:min(1080px,calc(100% - 36px));margin:auto;padding:42px 0 60px;position:relative}
+header{border-bottom:1px solid var(--line);padding:10px 0 28px;margin-bottom:30px}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.22em;font-size:.76rem;font-weight:700}
+h1{margin:8px 0 4px;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.05;letter-spacing:.035em}h1 span{color:var(--cyan)}.subtitle{color:var(--muted);margin:12px 0 0;font-size:1.05rem}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.tag{border:1px solid var(--line);background:#112a3e;padding:6px 11px;border-radius:3px;color:#a4edf4;font-size:.82rem}
+.section-title{display:flex;align-items:center;gap:12px;margin:34px 0 16px}.index{color:var(--cyan);font:700 .82rem Consolas,monospace;border:1px solid var(--line);padding:4px 7px}h2{font-size:1.28rem;letter-spacing:.08em;text-transform:uppercase;margin:0}
+.intro{color:var(--muted);max-width:820px;margin:0 0 22px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:linear-gradient(145deg,rgba(16,36,58,.96),rgba(9,24,40,.96));border:1px solid var(--line);border-radius:8px;padding:21px;box-shadow:0 12px 32px #0003}.card h3{margin:0 0 10px;font-size:1.05rem}.card p{color:var(--muted);margin:0}
+.status{display:inline-flex;align-items:center;gap:7px;color:var(--green);font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;font-weight:700;margin-bottom:10px}.status:before{content:"";width:7px;height:7px;background:currentColor;border-radius:50%;box-shadow:0 0 10px currentColor}.planned{color:var(--amber)}
+ul{margin:10px 0 0;padding-left:20px;color:var(--muted)}li{padding:3px 0}.wide{grid-column:1/-1}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}.achievement{border-left:3px solid var(--green)}.challenge{border-left:3px solid var(--amber)}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.step{padding:16px;background:#0e2134;border:1px solid var(--line);border-radius:6px}.step small{color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;font-weight:700}.step strong{display:block;margin:5px 0}.step span{color:var(--muted)}
+footer{margin-top:38px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.85rem}footer strong{color:#a4edf4;letter-spacing:.08em}
+@media(max-width:700px){.grid,.columns,.roadmap{grid-template-columns:1fr}.wide{grid-column:auto}.page{width:calc(100% - 26px);padding-top:26px}}
+@media print{body{background:#fff;color:#111}body:before{display:none}.page{width:100%;padding:0}.card,.step{background:#fff;box-shadow:none;border-color:#aaa;break-inside:avoid}.subtitle,.intro,.card p,ul,footer,.step span{color:#333}.tag{color:#111;border-color:#999;background:#fff}h1 span,.eyebrow,.index,.step small{color:#176477}}
+</style>
+</head>
+<body>
+<main class="page">
+<header>
+<div class="eyebrow">Entwicklungsbericht // Zwischenpräsentation</div>
+<h1>PROTOCOL: <span>IRON WAVE</span></h1>
+<p class="subtitle">Projektstatus &amp; Erfolge / Herausforderungen</p>
+<div class="meta"><span class="tag">Futuristischer Militär-Auto-Battler</span><span class="tag">Python</span><span class="tag">Pygame</span><span class="tag">Git / GitHub</span></div>
+</header>
+
+<section>
+<div class="section-title"><span class="index">01</span><h2>Projektstatus</h2></div>
+<p class="intro">Protocol: Iron Wave ist ein futuristisches Militär-Strategiespiel im Auto-Battler-Genre. Zwei gegnerische Armeen kämpfen automatisch gegeneinander. Mit einem begrenzten Budget kaufen die Spieler unterschiedliche Einheiten und platzieren sie auf festgelegten Positionen des Spielfelds.</p>
+<div class="grid">
+<article class="card"><div class="status">Umgesetzt / vorbereitet</div><h3>Aktueller Entwicklungsstand</h3>
+<ul><li>Grundlegende Projektstruktur erstellt</li><li>Titelbildschirm und Hauptmenü umgesetzt</li><li>Spielfeldraster vorbereitet</li><li>Hauptquartier-Grafik integriert</li><li>Erste Einheitenklassen implementiert</li><li>Einheitenverwaltung und einfaches Spawn-System begonnen</li></ul></article>
+<article class="card"><div class="status planned">Geplant / in Entwicklung</div><h3>Noch ausstehende Spielmechaniken</h3>
+<ul><li>Wirtschaftssystem und Geldverwaltung</li><li>Einheitenpreise und Kaufmechanik</li><li>Platzierung auf festgelegten Spielfeldpositionen</li><li>Automatisches Kampfsystem</li><li>Bewegungs- und Angriffsverhalten der Einheiten</li><li>Weitere Elemente der Benutzeroberfläche</li></ul></article>
+<article class="card wide"><h3>Geplanter Spielablauf</h3><div class="roadmap">
+<div class="step"><small>Phase 01</small><strong>Armee aufbauen</strong><span>Mit dem verfügbaren Budget Einheiten kaufen.</span></div>
+<div class="step"><small>Phase 02</small><strong>Einheiten positionieren</strong><span>Einheiten auf vorgesehenen Rasterpositionen platzieren.</span></div>
+<div class="step"><small>Phase 03</small><strong>Automatischer Kampf</strong><span>Beide Armeen kämpfen automatisch; anschließend wird das Ergebnis ausgewertet.</span></div>
+</div></article>
+</div>
+</section>
+
+<section>
+<div class="section-title"><span class="index">02</span><h2>Erfolge / Herausforderungen</h2></div>
+<div class="columns">
+<article class="card achievement"><div class="status">Erfolge</div><h3>Was haben wir bisher erreicht?</h3>
+<ul><li>Technische Grundlage mit Python und Pygame geschaffen.</li><li>Futuristischen Militärstil durch den Titelbildschirm gestaltet.</li><li>Spielfeld mit Raster und Hauptquartier vorbereitet.</li><li>Objektorientierte Struktur für Einheiten begonnen.</li><li>Erstellung neuer Einheiten mit der Einheitenliste verbunden.</li><li>Git und GitHub für Zusammenarbeit und Versionsverwaltung eingerichtet.</li></ul></article>
+<article class="card challenge"><div class="status planned">Herausforderungen / nächste Aufgaben</div><h3>Welche Aufgaben stehen noch an?</h3>
+<ul><li>Zuverlässiges Spawn- und Platzierungssystem für mehrere Einheiten entwickeln.</li><li>Überlappungen und ungültige Spawnpositionen verhindern.</li><li>Wirtschaftssystem, Kaufpreise und Spielerbudget implementieren.</li><li>Einheitenwerte festlegen und unterschiedliche Einheitentypen ausbalancieren.</li><li>Automatische Bewegung, Zielerfassung und Kampfverhalten entwickeln.</li><li>Einzelne Systeme zu einem vollständigen Spielablauf verbinden.</li></ul></article>
+</div>
+</section>
+<footer><span><strong>PROTOCOL: IRON WAVE</strong> // Projektzwischenbericht</span><span>Team: Alexander Schernthaner · Markus Kapper · Sandro Rafling</span></footer>
+</main>
+</body>
+</html>
