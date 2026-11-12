@@ -147,6 +147,7 @@ def main():
     clock = pygame.time.Clock()
 
     while running:
+        dt = clock.tick(60) / 1000  # Codex: Seconds since the last frame
 
         # get current window dimensions
         screen_width, screen_height = screen.get_size()
@@ -182,14 +183,11 @@ def main():
 
         elif state == GAME_STATE:
             # creates and updates the game screen
-            game.update()
+            game.update(dt)  # Codex: Update unit movement with elapsed time
             game.draw_game()
 
         # update display
         pygame.display.flip()
-
-        # 60 FPS
-        clock.tick(60)
 
     # shut down pygame
     pygame.quit()

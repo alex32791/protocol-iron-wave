@@ -31,7 +31,10 @@ HQ_IMAGE = Path(__file__).parent / "images" / "headquarters.png"
 
 # define units name
 SOLDIER = "Soldier" #0
-TANK = "Tank" #1 
+ARTILLERY = "Artillery" #1
+SNIPER = "Sniper" #2
+MACHINE_GUNNER = "Machine Gunner" #3
+TANK = "Tank" #4 
 
 # Tuple
-UNITY_TYPES = (SOLDIER, TANK)
+UNITY_TYPES = (SOLDIER, ARTILLERY, SNIPER, MACHINE_GUNNER, TANK )
